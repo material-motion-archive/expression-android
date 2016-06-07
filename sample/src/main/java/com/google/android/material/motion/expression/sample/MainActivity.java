@@ -17,13 +17,16 @@
 package com.google.android.material.motion.expression.sample;
 
 import com.google.android.material.motion.expression.Expression;
+import com.google.android.material.motion.expression.Intention;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 /**
- * Expression sample Activity.
+ * Sample {@link AppCompatActivity}.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +36,59 @@ public class MainActivity extends AppCompatActivity {
 
     setContentView(R.layout.main_activity);
 
-    TextView text = (TextView) findViewById(R.id.text);
-    text.setText(Expression.LIBRARY_NAME);
+    findViewById(R.id.start)
+        .setOnClickListener(
+            new OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                runDemos();
+              }
+            });
+
+    runDemos();
+  }
+
+  private void runDemos() {
+    textDemo();
+  }
+
+  private void textDemo() {
+    TextView text1 = (TextView) findViewById(R.id.text1);
+    TextView text2 = (TextView) findViewById(R.id.text2);
+    TextView text3 = (TextView) findViewById(R.id.text3);
+    TextView text4 = (TextView) findViewById(R.id.text4);
+    TextView text5 = (TextView) findViewById(R.id.text5);
+
+    text1.setText("");
+    text2.setText("");
+    text3.setText("");
+    text4.setText("");
+    text5.setText("");
+
+    CustomLanguage exp1 = new CustomLanguage();
+    CustomTerm<?> exp2 = exp1.term();
+    CustomTerm<?> exp3 = exp2.modifier("foobar");
+    CustomTerm<?> exp4 = exp2.modifier("baz");
+    CustomTerm<?> exp5 = exp3.and.term().modifier("qux").and.term().and.term().and.term();
+
+    executeText(exp1, text1); // nothing
+    executeText(exp2, text2); // default
+    executeText(exp3, text3); // foobar
+    executeText(exp4, text4); // baz
+    executeText(exp5, text5); // foobar, qux, default, default, default
+  }
+
+  private void executeText(Expression expression, TextView text) {
+    Intention[] intentions = expression.intentions();
+    if (intentions.length == 0) {
+      text.setText("nothing");
+    } else {
+      for (Intention i : intentions) {
+        CustomIntention intention = (CustomIntention) i;
+
+        CharSequence prev = text.getText();
+        text.setText(prev + (prev == "" ? "" : ", ") + intention.text);
+      }
+    }
   }
 }

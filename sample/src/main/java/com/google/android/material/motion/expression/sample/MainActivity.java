@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.google.android.material.motion.convention.sample;
+package com.google.android.material.motion.expression.sample;
 
-import com.google.android.material.motion.convention.Convention;
+import com.google.android.material.motion.expression.Expression;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 /**
- * Convention sample Activity.
+ * Expression sample Activity.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +34,6 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.main_activity);
 
     TextView text = (TextView) findViewById(R.id.text);
-    text.setText(Convention.LIBRARY_NAME);
+    text.setText(Expression.LIBRARY_NAME);
   }
 }

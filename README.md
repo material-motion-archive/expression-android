@@ -1,41 +1,31 @@
-# A convention for Android libraries
+# Expression
 
-The file system structure in this repo defines the conventions for a shared Android library.
+Describe your library here.
 
-    LibraryName/
-      .editorconfig             <- Libraries are expected to follow a standard format.
-      build.gradle              <- Libraries should support the Gradle build system.
+### Depending on the library
 
-      LICENSE                   <- License.
-      README.md                 <- Essential installation and usage guide.
-      CONTRIBUTING.md           <- Details for external contributors.
+Add it to your build.gradle with:
+```gradle
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+and:
 
-      library/                  <- The library module.
-        build.gradle            <- Gradle build file for the library.
-        src/
-          main/                 <- The code for the library.
-            AndroidManifest.xml <- The manifest for the library.
-            java/               <- Java source files.
-            res/                <- Android resources.
-          androidTest/          <- Tests.
+```gradle
+dependencies {
+    compile 'com.github.material-motion:material-motion-expression-android:master-SNAPSHOT'
+}
+```
 
-      sample/                   <- The sample module.
-        build.gradle            <- Gradle build file for the sample.
-        src/
-          main/                 <- The code for the sample.
-            AndroidManifest.xml <- The manifest for the sample.
-            java/               <- Java source files.
-            res/                <- Android resources.
+### Contributing to the library
 
-## Bootstrap script
+Open Android Studio,
+choose `File > New > Import`,
+choose the root `build.gradle` file.
 
-The bootstrap script creates the skeletal directory structure for an
-Android library repo.
-This script must be provided a library name, package name, github group,
-and github repo.
+### Building the sample
 
-Example usage:
-
-    # Create ~/MyLibrary and populate with this repo.
-    cd ~/MyLibrary
-    ./bootstrap.sh MyLibrary com.example.library github-username github-repo
+Run `./gradlew installDebug` from the project root.

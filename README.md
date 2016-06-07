@@ -1,6 +1,7 @@
 # Expression
 
-Describe your library here.
+This Expression library allows you to define your own Expression language.
+See the sample/ application for an example of a custom Expression language.
 
 ### Depending on the library
 

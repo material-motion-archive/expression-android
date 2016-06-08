@@ -20,8 +20,13 @@ package com.google.android.material.motion.expression;
  * {@link Intention Intentions}.
  *
  * <p>
- * Clients are not allowed to create a new instance of {@link Work}. It is used internally to wrap
- * a {@link Modifier} or {@link Initializer}
+ * Clients are not allowed to create a new instance of {@link Work}. It is used internally to pass
+ * Intentions along the {@link Expression} chain.
+ *
+ * <p>
+ * Clients should instead implement a {@link Modifier} for {@link Term#modify(Modifier)} or
+ * {@link Initializer} for {@link Term#Term(Language, Initializer, Intention...)}, which become
+ * wrapped in a Work instance behind the scenes.
  */
 public abstract class Work {
 

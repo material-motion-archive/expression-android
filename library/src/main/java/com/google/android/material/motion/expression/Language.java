@@ -25,7 +25,7 @@ import java.lang.reflect.InvocationTargetException;
  * A {@link Language} defines the {@link Term Terms} that can be used in an {@link Expression}
  * chain. A Language instance begins the {@link Expression} chain and allows a Term to be chained.
  * Like all Expressions, a Language is immutable.
- * <p>
+ *
  * <p>
  * To define a Term that can be chained to this Language, create a method that returns a new
  * instance of that Term. Be sure to pass <code>this</code> instance into the Term's constructor.
@@ -33,16 +33,19 @@ import java.lang.reflect.InvocationTargetException;
  * to enable chaining. Call this method to continue the Expression chain.
  * <p>
  * <code>Language &larr;<sub>new</sub>&larr; Term</code>
- * <p>
+ *
  * <p>
  * A Language also acts as a bridge between Terms on the Expression chain.
  * A Term can use the Language instance at {@link Term#and} to continue the Expression chain.
  * <p>
  * <code>Term &larr;<sub>and</sub>&larr; Language</code>
- * <p>
+ *
  * <p>
  * A Language does not intrinsically define any {@link Intention Intentions}.
  * Its {@link #intentions()} are the previous chained Term's full set of {@link Term#intentions()}.
+ *
+ * @param <L> Class type of your Language subclass. This is used for type inference when building
+ *     the Expression chain.
  */
 public abstract class Language<L extends Language> extends Expression {
 
@@ -53,7 +56,7 @@ public abstract class Language<L extends Language> extends Expression {
 
   /**
    * The initializing constructor.
-   * <p>
+   *
    * <p>
    * Subclasses should call this from their own initializing constructor.
    */
@@ -63,13 +66,13 @@ public abstract class Language<L extends Language> extends Expression {
 
   /**
    * The chaining constructor.
-   * <p>
+   *
    * <p>
    * Subclasses should call this from their own chaining constructor, which must be annotated with
    * {@link Keep} and have the same parameter types.
    *
    * @param work You must directly pass in the {@link Work} object that was passed into the
-   *             subclass's constructor.
+   *     subclass's constructor.
    */
   @Keep
   protected Language(Work work) {

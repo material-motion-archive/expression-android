@@ -24,14 +24,43 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Locale;
 
 /**
- * An {@link Expression} is a chain of {@link Intention} definitions. Expressions are immutable,
- * and can be built upon with chaining to create longer Expressions.
+ * Material Motion has a functional syntactic sugar for the creation and configuration of
+ * {@link Intention Intentions}. An {@link Expression} chain is the underlying data structure that
+ * is created from this syntactic sugar. The Expression chain alternates between a {@link Language}
+ * and a {@link Term}, and is what enables the syntax sugar's crucial properties:
  *
  * <p>
- * Start an Expression by creating an instance of a {@link Language}.
+ * <b>Immutability</b>
  *
  * <p>
- * An Expression chain alternates between a Language and a {@link Term}.
+ * An expression is immutable. Any referenced Term can be expected to generate the same
+ * {@link Term#intentions()}, even after it is used in a chain to build a longer Expression.
+ *
+ * <pre>{@code
+ * Term fadeIn = new Tween().fadeIn();
+ * Term fadeInEaseOut = fadeIn.withEasingCurve(easeOut);
+ * element.addIntentions(fadeIn.intentions()); // easeOut should not be applied.}</pre>
+ *
+ * <p>
+ * <b>Intelligent code completion</b>
+ *
+ * <p>
+ * Upon invoking code completion in an Expression chain, only valid ways to build upon the chain
+ * are made available.
+ *
+ * <ul>
+ *   <li>After a Language, Term functions are valid.</li>
+ *   <li>
+ *     After a Term, modifier functions, the {@link Term#and} keyword,
+ *     and {@link Term#intentions()} are valid.
+ *   </li>
+ * </ul>
+ *
+ * <p>
+ * <b>Understanding the Expression chain</b>
+ *
+ * <p>
+ * Start an Expression chain by creating an instance of a Language.
  * A representative Expression chain looks like:
  * <p>
  * <code>
@@ -44,6 +73,10 @@ import java.util.Locale;
  *
  * <p>
  * For more details, see the javadoc for Language and Term.
+ *
+ * @see <a href="https://material-motion.gitbooks.io/material-motion-starmap/content/specifications/expressions.html">The Material Motion Starmap</a>
+ * @see Language
+ * @see Term
  */
 public abstract class Expression {
 

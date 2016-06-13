@@ -24,12 +24,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * A {@link Language} defines the {@link Term Terms} that can be used in an {@link Expression}
- * chain. A Language instance begins the {@link Expression} chain and allows a Term to be chained.
- * Like all Expressions, a Language is immutable.
+ * A {@link Language} defines a lexical scope for a particular set of {@link Term Terms}. These are
+ * the Terms which can be used together in an {@link Expression} chain.
  *
  * <p>
- * To define a Term that can be chained to this Language, create a method that returns a new
+ * To define a Term that can be chained to this Language, create a Term function that returns a new
  * instance of that Term. Be sure to pass <code>this</code> instance into the Term's constructor.
  * The return value must be the most specific type possible, and must be a generic type if possible,
  * to enable chaining. Call this method to continue the Expression chain.

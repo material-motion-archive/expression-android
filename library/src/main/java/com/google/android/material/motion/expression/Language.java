@@ -17,6 +17,8 @@
 package com.google.android.material.motion.expression;
 
 import android.support.annotation.Keep;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -47,12 +49,12 @@ import java.lang.reflect.InvocationTargetException;
  * @param <L> Class type of your Language subclass. This is used for type inference when building
  *     the Expression chain.
  */
-public abstract class Language<L extends Language> extends Expression {
+public abstract class Language<L extends Language<L>> extends Expression {
 
   /**
-   * The full set of {@link Intention Intentions} from the previous chained {@link Term}.
+   * The previous chained {@link Term}.
    */
-  private final Work work;
+  @Nullable private final Term<?, L> previousTerm;
 
   /**
    * The initializing constructor.
@@ -61,7 +63,7 @@ public abstract class Language<L extends Language> extends Expression {
    * Subclasses should call this from their own initializing constructor.
    */
   public Language() {
-    this.work = Work.EMPTY;
+    this.previousTerm = null;
   }
 
   /**
@@ -71,27 +73,27 @@ public abstract class Language<L extends Language> extends Expression {
    * Subclasses should call this from their own chaining constructor, which must be annotated with
    * {@link Keep} and have the same parameter types.
    *
-   * @param work You must directly pass in the {@link Work} object that was passed into the
-   *     subclass's constructor.
+   * @param previousTerm You must directly pass in the {@link Term} instance that was passed into
+   *     the subclass's constructor.
    */
   @Keep
-  protected Language(Work work) {
-    this.work = work;
+  protected Language(@NonNull Term<?, L> previousTerm) {
+    this.previousTerm = previousTerm;
   }
 
-  final L chain(Work work) {
-    return newInstance(work);
+  final L chain(Term<?, L> previousTerm) {
+    return newInstance(previousTerm);
   }
 
-  @SuppressWarnings({"TryWithIdenticalCatches", "unchecked"}) // Cast to Class<L>
-  private L newInstance(Work work) {
+  @SuppressWarnings({"TryWithIdenticalCatches", "unchecked"}) // Cast to Class<L> and Class<Term>
+  private L newInstance(Term<?, L> previousTerm) {
     try {
       Class<L> klass = (Class<L>) getClass();
 
-      Constructor<L> constructor = klass.getDeclaredConstructor(Work.class);
+      Constructor<L> constructor = klass.getDeclaredConstructor(Term.class);
       constructor.setAccessible(true);
 
-      return constructor.newInstance(work);
+      return constructor.newInstance(previousTerm);
     } catch (NoSuchMethodException e) {
       throw new BadImplementationException(this, BadImplementationException.MISSING_CONSTRUCTOR, e);
     } catch (IllegalAccessException e) {
@@ -105,6 +107,10 @@ public abstract class Language<L extends Language> extends Expression {
 
   @Override
   public final Intention[] intentions() {
-    return work.work();
+    if (previousTerm != null) {
+      return previousTerm.intentions();
+    } else {
+      return new Intention[0];
+    }
   }
 }

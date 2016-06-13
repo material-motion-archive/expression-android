@@ -169,7 +169,11 @@ public abstract class Term<T extends Term<T, L>, L extends Language<L>> extends 
     }
   }
 
-  @Override
+
+  /**
+   * @return The {@link Intention intentions} defined in this {@link Expression} chain, including
+   * the working set from this {@link Term} and all previous Terms.
+   */
   public final Intention[] intentions() {
     Intention[] intentions = language.intentions();
     return concat(intentions, work.work());

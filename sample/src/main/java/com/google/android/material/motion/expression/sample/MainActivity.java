@@ -16,8 +16,8 @@
 
 package com.google.android.material.motion.expression.sample;
 
-import com.google.android.material.motion.expression.Expression;
 import com.google.android.material.motion.expression.Intention;
+import com.google.android.material.motion.expression.Term;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -71,15 +71,16 @@ public class MainActivity extends AppCompatActivity {
     CustomTerm<?> exp4 = exp2.modifier("baz");
     CustomTerm<?> exp5 = exp3.and.term().modifier("qux").and.term().and.term().and.term();
 
-    executeText(exp1, text1); // nothing
+    // Can't call intentions() on exp1 since it's not a Term.
+    // executeText(exp1, text1); // nothing
     executeText(exp2, text2); // default
     executeText(exp3, text3); // foobar
     executeText(exp4, text4); // baz
     executeText(exp5, text5); // foobar, qux, default, default, default
   }
 
-  private void executeText(Expression expression, TextView text) {
-    Intention[] intentions = expression.intentions();
+  private void executeText(Term term, TextView text) {
+    Intention[] intentions = term.intentions();
     for (Intention i : intentions) {
       CustomIntention intention = (CustomIntention) i;
 

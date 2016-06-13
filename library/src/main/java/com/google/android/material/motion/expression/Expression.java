@@ -44,10 +44,6 @@ import java.util.Locale;
  *
  * <p>
  * For more details, see the javadoc for Language and Term.
- *
- * <p>
- * Any referenced Expression can be expected to generate the same {@link #intentions()},
- * even after it is used in a chain to build a longer Expression.
  */
 public abstract class Expression {
 
@@ -82,9 +78,4 @@ public abstract class Expression {
       return null;
     }
   }
-
-  /**
-   * @return The {@link Intention intentions} defined in this {@link Expression} chain.
-   */
-  public abstract Intention[] intentions();
 }

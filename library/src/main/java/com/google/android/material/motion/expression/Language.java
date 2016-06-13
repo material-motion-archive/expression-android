@@ -105,8 +105,7 @@ public abstract class Language<L extends Language<L>> extends Expression {
     }
   }
 
-  @Override
-  public final Intention[] intentions() {
+  final Intention[] intentions() {
     if (previousTerm != null) {
       return previousTerm.intentions();
     } else {

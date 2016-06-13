@@ -30,14 +30,6 @@ package com.google.android.material.motion.expression;
  */
 public abstract class Work {
 
-  static final Work EMPTY =
-      new Work() {
-        @Override
-        public Intention[] work() {
-          return new Intention[0];
-        }
-      };
-
   Work() {}
 
   abstract Intention[] work();

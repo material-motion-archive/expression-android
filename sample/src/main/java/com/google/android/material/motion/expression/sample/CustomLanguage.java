@@ -18,9 +18,9 @@ package com.google.android.material.motion.expression.sample;
 
 import com.google.android.material.motion.expression.Language;
 import com.google.android.material.motion.expression.Term;
-import com.google.android.material.motion.expression.Work;
 
 import android.support.annotation.Keep;
+import android.support.annotation.NonNull;
 
 /**
  * Required:
@@ -43,8 +43,8 @@ public final class CustomLanguage extends Language<CustomLanguage> {
    * so this can be invoked via reflection.
    */
   @Keep
-  private CustomLanguage(Work work) {
-    super(work);
+  private CustomLanguage(@NonNull Term<?, CustomLanguage> previousTerm) {
+    super(previousTerm);
   }
 
   /**

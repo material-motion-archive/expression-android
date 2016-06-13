@@ -60,7 +60,7 @@ import java.util.Arrays;
  * @param <L> Class type of your Language subclass. This is used for type inference when building
  *     the Expression chain.
  */
-public abstract class Term<T extends Term<?, ?>, L extends Language<L>> extends Expression {
+public abstract class Term<T extends Term<T, L>, L extends Language<L>> extends Expression {
 
   /**
    * The next {@link Language} on the {@link Expression} chain.
@@ -102,14 +102,7 @@ public abstract class Term<T extends Term<?, ?>, L extends Language<L>> extends 
             return intentions;
           }
         };
-    this.and =
-        language.chain(
-            new Work() {
-              @Override
-              Intention[] work() {
-                return intentions();
-              }
-            });
+    this.and = language.chain(this);
   }
 
   /**
@@ -126,14 +119,7 @@ public abstract class Term<T extends Term<?, ?>, L extends Language<L>> extends 
   protected Term(L language, Work work) {
     this.language = language;
     this.work = work;
-    this.and =
-        language.chain(
-            new Work() {
-              @Override
-              Intention[] work() {
-                return intentions();
-              }
-            });
+    this.and = language.chain(this);
   }
 
   /**

@@ -80,15 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
   private void executeText(Expression expression, TextView text) {
     Intention[] intentions = expression.intentions();
-    if (intentions.length == 0) {
-      text.setText("nothing");
-    } else {
-      for (Intention i : intentions) {
-        CustomIntention intention = (CustomIntention) i;
+    for (Intention i : intentions) {
+      CustomIntention intention = (CustomIntention) i;
 
-        CharSequence prev = text.getText();
-        text.setText(prev + (prev == "" ? "" : ", ") + intention.text);
-      }
+      CharSequence prev = text.getText();
+      text.setText(prev + (prev == "" ? "" : ", ") + intention.text);
     }
   }
 }

@@ -25,7 +25,7 @@ import java.util.Locale;
 
 /**
  * Material Motion has a functional syntactic sugar for the creation and configuration of
- * {@link Intention Intentions}. An {@link Expression} chain is the underlying data structure that
+ * {@link Plan Plans}. An {@link Expression} chain is the underlying data structure that
  * is created from this syntactic sugar. The Expression chain alternates between a {@link Language}
  * and a {@link Term}, and is what enables the syntax sugar's crucial properties:
  *
@@ -34,12 +34,12 @@ import java.util.Locale;
  *
  * <p>
  * An expression is immutable. Any referenced Term can be expected to generate the same
- * {@link Term#intentions()}, even after it is used in a chain to build a longer Expression.
+ * {@link Term#plans()}, even after it is used in a chain to build a longer Expression.
  *
  * <pre>{@code
  * Term fadeIn = new Tween().fadeIn();
  * Term fadeInEaseOut = fadeIn.withEasingCurve(easeOut);
- * element.addIntentions(fadeIn.intentions()); // easeOut should not be applied.}</pre>
+ * element.addPlans(fadeIn.plans()); // easeOut should not be applied.}</pre>
  *
  * <p>
  * <b>Intelligent code completion</b>
@@ -52,7 +52,7 @@ import java.util.Locale;
  *   <li>After a Language, Term functions are valid.</li>
  *   <li>
  *     After a Term, modifier functions, the {@link Term#and} keyword,
- *     and {@link Term#intentions()} are valid.
+ *     and {@link Term#plans()} are valid.
  *   </li>
  * </ul>
  *

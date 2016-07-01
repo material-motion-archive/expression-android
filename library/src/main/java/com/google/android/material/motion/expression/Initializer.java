@@ -15,10 +15,12 @@
  */
 package com.google.android.material.motion.expression;
 
+import com.google.android.material.motion.runtime.Plan;
+
 import android.support.annotation.Nullable;
 
 /**
- * A function object that represents an initialization of {@link Intention Intentions}.
+ * A function object that represents an initialization of {@link Plan Plans}.
  *
  * <p>
  * Similar to {@link Modifier}, but allows each {@link Term} subclass to provide its own
@@ -26,7 +28,7 @@ import android.support.annotation.Nullable;
  *
  * <p>
  * Your custom Term must pass an instance of this class into
- * {@link Term#Term(Language, Initializer, Intention...)}.
+ * {@link Term#Term(Language, Initializer, Plan...)}.
  */
 public abstract class Initializer {
   @Nullable private final Initializer subclassInitializer;
@@ -40,23 +42,23 @@ public abstract class Initializer {
     this.subclassInitializer = subclassInitializer;
   }
 
-  final void fullInitialize(Intention[] intentions) {
-    initialize(intentions);
+  final void fullInitialize(Plan[] plans) {
+    initialize(plans);
     if (subclassInitializer != null) {
-      subclassInitializer.fullInitialize(intentions);
+      subclassInitializer.fullInitialize(plans);
     }
   }
 
   /**
-   * Initializes the properties on the given {@link Intention Intentions}.
+   * Initializes the properties on the given {@link Plan Plans}.
    *
-   * @param intentions The Intentions to initialize. Do not add or remove elements from the array.
+   * @param plans The Plans to initialize. Do not add or remove elements from the array.
    */
-  protected abstract void initialize(Intention[] intentions);
+  protected abstract void initialize(Plan[] plans);
 
   /**
    * A helper class that makes it easy to implement a simple {@link Initializer} that does the
-   * same operation for every {@link Intention}.
+   * same operation for every {@link Plan}.
    */
   public static abstract class SimpleInitializer extends Initializer {
 
@@ -70,17 +72,17 @@ public abstract class Initializer {
     }
 
     @Override
-    protected final void initialize(Intention[] intentions) {
-      for (Intention intention : intentions) {
-        initialize(intention);
+    protected final void initialize(Plan[] plans) {
+      for (Plan plan : plans) {
+        initialize(plan);
       }
     }
 
     /**
-     * Initializes the properties on the given {@link Intention}.
+     * Initializes the properties on the given {@link Plan}.
      *
-     * @param intention The Intention to initialize.
+     * @param plan The Plan to initialize.
      */
-    protected abstract void initialize(Intention intention);
+    protected abstract void initialize(Plan plan);
   }
 }

@@ -16,17 +16,31 @@
 
 package com.google.android.material.motion.expression.sample;
 
-import com.google.android.material.motion.expression.Intention;
+import com.google.android.material.motion.runtime.Performer;
+import com.google.android.material.motion.runtime.Plan;
 
 /**
  * Required:
- * Your custom class must extend {@link Intention}.
+ * Your custom class must extend {@link Plan}.
+ *
+ * Optional:
+ * Your custom class may implement any optional Plan APIs by implementing one or more
+ * <code>*Plan</code> interfaces.
  */
-public final class CustomIntention implements Intention {
+public final class CustomPlan extends Plan {
 
   /**
    * Optional:
-   * How you implement your {@link Intention} is up to you.
+   * How you implement your {@link Plan} is up to you.
    */
   public String text;
+
+  /**
+   * Required:
+   * Your custom {@link Plan} must declare a {@link Performer} that can execute it.
+   */
+  @Override
+  public Class<? extends Performer> getPerformerClass() {
+    return CustomPerformer.class;
+  }
 }

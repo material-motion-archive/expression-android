@@ -16,6 +16,8 @@
 
 package com.google.android.material.motion.expression;
 
+import com.google.android.material.motion.runtime.Plan;
+
 import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,8 +44,8 @@ import java.lang.reflect.InvocationTargetException;
  * <code>Term &larr;<sub>and</sub>&larr; Language</code>
  *
  * <p>
- * A Language does not intrinsically define any {@link Intention Intentions}.
- * Its {@link #intentions()} are the previous chained Term's full set of {@link Term#intentions()}.
+ * A Language does not intrinsically define any {@link Plan Plans}.
+ * Its {@link #plans()} are the previous chained Term's full set of {@link Term#plans()}.
  *
  * @param <L> Class type of your Language subclass. This is used for type inference when building
  *     the Expression chain.
@@ -104,11 +106,11 @@ public abstract class Language<L extends Language<L>> extends Expression {
     }
   }
 
-  final Intention[] intentions() {
+  final Plan[] plans() {
     if (previousTerm != null) {
-      return previousTerm.intentions();
+      return previousTerm.plans();
     } else {
-      return new Intention[0];
+      return new Plan[0];
     }
   }
 }

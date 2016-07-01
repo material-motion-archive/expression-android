@@ -18,12 +18,12 @@ package com.google.android.material.motion.expression.sample;
 
 import com.google.android.material.motion.expression.Initializer;
 import com.google.android.material.motion.expression.Initializer.SimpleInitializer;
-import com.google.android.material.motion.expression.Intention;
 import com.google.android.material.motion.expression.Language;
 import com.google.android.material.motion.expression.Modifier;
 import com.google.android.material.motion.expression.Modifier.SimpleModifier;
 import com.google.android.material.motion.expression.Term;
 import com.google.android.material.motion.expression.Work;
+import com.google.android.material.motion.runtime.Plan;
 
 import android.support.annotation.Keep;
 
@@ -53,12 +53,12 @@ public final class CustomTerm<T extends CustomTerm<T>> extends Term<T, CustomLan
         language,
         new SimpleInitializer(null) {
           @Override
-          protected void initialize(Intention intention) {
-            CustomIntention i = (CustomIntention) intention;
+          protected void initialize(Plan plan) {
+            CustomPlan i = (CustomPlan) plan;
             i.text = "default";
           }
         },
-        new CustomIntention());
+        new CustomPlan());
   }
 
   /**
@@ -82,8 +82,8 @@ public final class CustomTerm<T extends CustomTerm<T>> extends Term<T, CustomLan
     return modify(
         new SimpleModifier() {
           @Override
-          public void modify(Intention intention) {
-            CustomIntention i = (CustomIntention) intention;
+          public void modify(Plan plan) {
+            CustomPlan i = (CustomPlan) plan;
             i.text = text;
           }
         });

@@ -15,22 +15,24 @@
  */
 package com.google.android.material.motion.expression;
 
+import com.google.android.material.motion.runtime.Plan;
+
 /**
  * A function object that represents an arbitrary unit of work which generates
- * {@link Intention Intentions}.
+ * {@link Plan Plans}.
  *
  * <p>
  * Clients are not allowed to create a new instance of {@link Work}. It is used internally to pass
- * Intentions along the {@link Expression} chain.
+ * Plans along the {@link Expression} chain.
  *
  * <p>
  * Clients should instead implement a {@link Modifier} for {@link Term#modify(Modifier)} or
- * {@link Initializer} for {@link Term#Term(Language, Initializer, Intention...)}, which become
+ * {@link Initializer} for {@link Term#Term(Language, Initializer, Plan...)}, which become
  * wrapped in a Work instance behind the scenes.
  */
 public abstract class Work {
 
   Work() {}
 
-  abstract Intention[] work();
+  abstract Plan[] work();
 }

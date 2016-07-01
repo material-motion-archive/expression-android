@@ -16,8 +16,10 @@
 
 package com.google.android.material.motion.expression.sample;
 
-import com.google.android.material.motion.expression.Intention;
 import com.google.android.material.motion.expression.Term;
+import com.google.android.material.motion.runtime.Plan;
+import com.google.android.material.motion.runtime.Scheduler;
+import com.google.android.material.motion.runtime.Transaction;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,8 @@ import android.widget.TextView;
  * Sample {@link AppCompatActivity}.
  */
 public class MainActivity extends AppCompatActivity {
+
+  private final Scheduler scheduler = new Scheduler();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     CustomTerm<?> exp4 = exp2.modifier("baz");
     CustomTerm<?> exp5 = exp3.and.term().modifier("qux").and.term().and.term().and.term();
 
-    // Can't call intentions() on exp1 since it's not a Term.
+    // Can't call plans() on exp1 since it's not a Term.
     // executeText(exp1, text1); // nothing
     executeText(exp2, text2); // default
     executeText(exp3, text3); // foobar
@@ -80,12 +84,13 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void executeText(Term term, TextView text) {
-    Intention[] intentions = term.intentions();
-    for (Intention i : intentions) {
-      CustomIntention intention = (CustomIntention) i;
+    Transaction transaction = new Transaction();
 
-      CharSequence prev = text.getText();
-      text.setText(prev + (prev == "" ? "" : ", ") + intention.text);
+    Plan[] plans = term.plans();
+    for (Plan plan : plans) {
+      transaction.addPlan(plan, text);
     }
+
+    scheduler.commitTransaction(transaction);
   }
 }

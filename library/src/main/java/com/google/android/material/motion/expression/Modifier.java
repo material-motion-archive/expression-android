@@ -15,8 +15,10 @@
  */
 package com.google.android.material.motion.expression;
 
+import com.google.android.material.motion.runtime.Plan;
+
 /**
- * A function object that represents a modification of {@link Intention Intentions}.
+ * A function object that represents a modification of {@link Plan Plans}.
  *
  * <p>
  * Your custom Term must pass an instance of this class into {@link Term#modify(Modifier)}.
@@ -24,30 +26,30 @@ package com.google.android.material.motion.expression;
 public abstract class Modifier {
 
   /**
-   * Modifies the properties on the given {@link Intention Intentions}.
+   * Modifies the properties on the given {@link Plan Plans}.
    *
-   * @param intentions The Intentions to modify. Do not add or remove elements from the array.
+   * @param plans The Plans to modify. Do not add or remove elements from the array.
    */
-  abstract void modify(Intention[] intentions);
+  abstract void modify(Plan[] plans);
 
   /**
    * A helper class that makes it easy to implement a simple {@link Modifier} that does the
-   * same operation for every {@link Intention}.
+   * same operation for every {@link Plan}.
    */
   public static abstract class SimpleModifier extends Modifier {
 
     @Override
-    public final void modify(Intention[] intentions) {
-      for (Intention intention : intentions) {
-        modify(intention);
+    public final void modify(Plan[] plans) {
+      for (Plan plan : plans) {
+        modify(plan);
       }
     }
 
     /**
-     * Modifies the properties on the given {@link Intention}.
+     * Modifies the properties on the given {@link Plan}.
      *
-     * @param intention The Intention to modify.
+     * @param plan The Plan to modify.
      */
-    public abstract void modify(Intention intention);
+    public abstract void modify(Plan plan);
   }
 }

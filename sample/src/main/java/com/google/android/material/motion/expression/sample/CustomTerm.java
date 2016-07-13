@@ -40,7 +40,7 @@ import android.support.annotation.Keep;
  *   <li>Pass your custom {@link Language} into the second type parameter of the superclass.</li>
  * </ol>
  */
-public final class CustomTerm<T extends CustomTerm<T>> extends Term<T, CustomLanguage> {
+public final class CustomTerm<T extends CustomTerm<?>> extends Term<T, CustomLanguage> {
 
   /**
    * Required:

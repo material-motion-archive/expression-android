@@ -62,7 +62,7 @@ import java.util.Arrays;
  * @param <L> Class type of your Language subclass. This is used for type inference when building
  *     the Expression chain.
  */
-public abstract class Term<T extends Term<T, L>, L extends Language<L>> extends Expression {
+public abstract class Term<T extends Term<?, L>, L extends Language<L>> extends Expression {
 
   /**
    * The next {@link Language} on the {@link Expression} chain.

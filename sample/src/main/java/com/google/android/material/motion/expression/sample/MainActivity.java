@@ -16,19 +16,18 @@
 
 package com.google.android.material.motion.expression.sample;
 
-import com.google.android.material.motion.expression.Term;
-import com.google.android.material.motion.runtime.Plan;
-import com.google.android.material.motion.runtime.Scheduler;
-import com.google.android.material.motion.runtime.Transaction;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import com.google.android.material.motion.expression.Term;
+import com.google.android.material.motion.runtime.Plan;
+import com.google.android.material.motion.runtime.Scheduler;
+import com.google.android.material.motion.runtime.Transaction;
 
 /**
- * Sample {@link AppCompatActivity}.
+ * Material Motion Android Expression Sample {@link AppCompatActivity}.
  */
 public class MainActivity extends AppCompatActivity {
 

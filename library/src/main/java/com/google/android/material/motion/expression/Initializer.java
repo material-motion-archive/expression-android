@@ -15,9 +15,8 @@
  */
 package com.google.android.material.motion.expression;
 
-import com.google.android.material.motion.runtime.Plan;
-
 import android.support.annotation.Nullable;
+import com.google.android.material.motion.runtime.Plan;
 
 /**
  * A function object that represents an initialization of {@link Plan Plans}.

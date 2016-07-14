@@ -16,11 +16,9 @@
 
 package com.google.android.material.motion.expression;
 
-import com.google.android.material.motion.runtime.Plan;
-
 import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
-
+import com.google.android.material.motion.runtime.Plan;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

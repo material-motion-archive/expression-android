@@ -16,11 +16,10 @@
 
 package com.google.android.material.motion.expression.sample;
 
-import com.google.android.material.motion.expression.Language;
-import com.google.android.material.motion.expression.Term;
-
 import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
+import com.google.android.material.motion.expression.Language;
+import com.google.android.material.motion.expression.Term;
 
 /**
  * Required:

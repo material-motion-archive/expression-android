@@ -15,11 +15,10 @@
  */
 package com.google.android.material.motion.expression.sample;
 
+import android.widget.TextView;
 import com.google.android.material.motion.runtime.Performer;
 import com.google.android.material.motion.runtime.Performer.PlanPerformance;
 import com.google.android.material.motion.runtime.Plan;
-
-import android.widget.TextView;
 
 /**
  * Required:

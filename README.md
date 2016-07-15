@@ -6,7 +6,7 @@ Family.
 
 ## Depending on the library
 
-Use Jitpack to depend on any of the our [public releases](https://github.com/material-motion/material-motion-expression-android/releases).
+Use Jitpack to depend on any of our [public releases](https://github.com/material-motion/material-motion-expression-android/releases).
 
 Add the Jitpack repository to your project's `build.gradle`:
 

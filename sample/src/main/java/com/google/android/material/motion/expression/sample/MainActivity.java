@@ -27,7 +27,7 @@ import com.google.android.material.motion.runtime.Scheduler;
 import com.google.android.material.motion.runtime.Transaction;
 
 /**
- * Material Motion Android Expression Sample {@link AppCompatActivity}.
+ * Material Motion Android Expression Sample Activity.
  */
 public class MainActivity extends AppCompatActivity {
 

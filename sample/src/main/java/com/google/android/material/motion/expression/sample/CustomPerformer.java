@@ -17,7 +17,6 @@ package com.google.android.material.motion.expression.sample;
 
 import android.widget.TextView;
 import com.google.android.material.motion.runtime.Performer;
-import com.google.android.material.motion.runtime.Performer.PlanPerformance;
 import com.google.android.material.motion.runtime.Plan;
 
 /**
@@ -28,7 +27,7 @@ import com.google.android.material.motion.runtime.Plan;
  * Your custom class may implement any optional Performer APIs by implementing one or more
  * <code>*Performance</code> interfaces.
  */
-public final class CustomPerformer extends Performer implements PlanPerformance {
+public final class CustomPerformer extends Performer<TextView> {
 
   /**
    * Required:

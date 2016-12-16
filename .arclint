@@ -3,6 +3,15 @@
     "chmod": {
       "type": "chmod"
     },
+    "text": {
+      "type": "text",
+      "include": "(\\.(java|xml)$)",
+      "exclude": [],
+      "severity": {
+        "3": "disabled",
+        "5": "disabled"
+      }
+    },
     "prose": {
       "type": "prose",
       "include": "(\\.(md)$)",
@@ -10,6 +19,7 @@
         "(^CHANGELOG.md)"
       ],
       "severity": {
+        "consistency.spacing": "disabled",
         "typography.symbols.curly_quotes": "disabled",
         "typography.symbols.ellipsis": "disabled",
         "leonard.exclamation.30ppm": "disabled",

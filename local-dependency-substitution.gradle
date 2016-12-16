@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 The Material Motion Authors. All Rights Reserved.
+ * Copyright 2016-present The Material Motion Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ subprojects {
       if (line) {
         this.project.dependencies.create("$line:local")
       }
-    }.grep { it }
+    }.findAll()
 
     resolutionStrategy.dependencySubstitution.all { DependencySubstitution dependency ->
       if (dependency.requested instanceof ModuleComponentSelector) {
@@ -89,7 +89,7 @@ subprojects {
       .collectMany { it.allDependencies }
       .unique()
       .each { Dependency dependency ->
-      if (substitutions.grep { it.group == dependency.group && it.name == dependency.name }) {
+      if (substitutions.find { it.group == dependency.group && it.name == dependency.name }) {
         logger.lifecycle("Installing $dependency.group:$dependency.name")
         logger.info(
           "Executing \"./install-local-dependency.sh $dependency.group $dependency.name\"")

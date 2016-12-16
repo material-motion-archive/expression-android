@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,11 +28,11 @@ name="$2"
 dir="$(mdm dir $name)" || {
   cat << EOF
 Failed to get the local repo path for dependency $group:$name.
-Make sure you read through our Contributor essentials: https://www.gitbook.com/book/material-motion/material-motion-team/
+Make sure you read through our Contributor essentials: https://material-motion.github.io/material-motion/team/essentials/
 
 Especially make sure that:
 
-* You have installed our team's mdm tool https://material-motion.gitbooks.io/material-motion-team/content/essentials/frequent_contributors/tools.html
+* You have installed our team's mdm tool https://material-motion.github.io/material-motion/team/essentials/frequent_contributors/tools
     \$(mdm dir) should output the correct directory
 * You have cloned the repo for $group:$name
     \$(mdm dir $name) should output the correct directory

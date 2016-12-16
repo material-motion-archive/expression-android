@@ -21,17 +21,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
 import com.google.android.material.motion.expression.Term;
+import com.google.android.material.motion.runtime.MotionRuntime;
 import com.google.android.material.motion.runtime.Plan;
-import com.google.android.material.motion.runtime.Scheduler;
-import com.google.android.material.motion.runtime.Transaction;
 
 /**
  * Material Motion Android Expression Sample Activity.
  */
 public class MainActivity extends AppCompatActivity {
 
-  private final Scheduler scheduler = new Scheduler();
+  private final MotionRuntime runtime = new MotionRuntime();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.main_activity);
 
     findViewById(R.id.start)
-        .setOnClickListener(
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                runDemos();
-              }
-            });
+      .setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            runDemos();
+          }
+        });
 
     runDemos();
   }
@@ -83,13 +83,9 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void executeText(Term term, TextView text) {
-    Transaction transaction = new Transaction();
-
     Plan[] plans = term.plans();
     for (Plan plan : plans) {
-      transaction.addPlan(plan, text);
+      runtime.addPlan(plan, text);
     }
-
-    scheduler.commitTransaction(transaction);
   }
 }

@@ -16,6 +16,8 @@
 
 package com.google.android.material.motion.expression.sample;
 
+import android.widget.TextView;
+
 import com.google.android.material.motion.runtime.Performer;
 import com.google.android.material.motion.runtime.Plan;
 
@@ -27,7 +29,7 @@ import com.google.android.material.motion.runtime.Plan;
  * Your custom class may implement any optional Plan APIs by implementing one or more
  * <code>*Plan</code> interfaces.
  */
-public final class CustomPlan extends Plan {
+public final class CustomPlan extends Plan<TextView> {
 
   /**
    * Optional:
@@ -40,7 +42,7 @@ public final class CustomPlan extends Plan {
    * Your custom {@link Plan} must declare a {@link Performer} that can execute it.
    */
   @Override
-  public Class<? extends Performer> getPerformerClass() {
+  public Class<? extends Performer<TextView>> getPerformerClass() {
     return CustomPerformer.class;
   }
 }
